@@ -14,9 +14,8 @@ async function run() {
             const content = fs.readFileSync(f);
             const jsonData = parser.xml2js(content, { compact: true, spaces: 2 });
             const counters = jsonData.TestRun.ResultSummary.Counters._attributes;
-            console.log(counters);
-            passedTests += counters.passed;
-            failedTests += counters.failed;
+            passedTests += parseInt(counters.passed);
+            failedTests += parseInt(counters.failed);
         }
         const color = failedTests ? 'critical' : 'success';
         const message = `${passedTests} passed, ${failedTests} failed`;
@@ -25,8 +24,9 @@ async function run() {
             https.get(`https://img.shields.io/badge/${titleInput}-${message}-${color}`, response => {
                 response.on('data', chunk => { data += chunk })
                 response.on('end', () => {
+                    console.log('SVG from img.shields.io');
                     console.log(data);
-                    const fileName = 'test-badge.svg';
+                    const filePath = 'test-badge.svg';
                     console.log('writing to ' + filePath);
                     fs.writeFileSync(filePath, data);
                     resolve();
