@@ -26,7 +26,9 @@ async function run() {
                 response.on('data', chunk => { data += chunk })
                 response.on('end', () => {
                     console.log(data);
-                    fs.writeFileSync('test-badge.svg', data);
+                    const fileName = 'test-badge.svg';
+                    console.log('writing to ' + filePath);
+                    fs.writeFileSync(filePath, data);
                     resolve();
                 })
             });
