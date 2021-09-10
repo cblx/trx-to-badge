@@ -19,8 +19,8 @@
   "homepage": "https://github.com/cblx/trx-to-badge#readme",
   "dependencies": {
     "@actions/core": "^1.5.0",
+    "glob": "^7.1.7",
     "node-fetch": "^3.0.0",
-    "node-glob": "^1.2.0",
     "xml-js": "^1.6.11"
   }
 }
