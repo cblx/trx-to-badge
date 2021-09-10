@@ -25,6 +25,7 @@ async function run() {
             https.get(`https://img.shields.io/badge/${titleInput}-${message}-${color}`, response => {
                 response.on('data', chunk => { data += chunk })
                 response.on('end', () => {
+                    console.log(data);
                     fs.writeFileSync('test-badge.svg', data);
                     resolve();
                 })
