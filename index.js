@@ -20,11 +20,11 @@ async function run() {
         }
         const color = failedTests ? 'critical' : 'success';
         const message = `${passedTests} passed, ${failedTests} failed`;
-        const promise = new Promise(r => {
+        const promise = new Promise(resolve => {
             let data = '';
-            https.get(`https://img.shields.io/badge/${titleInput}-${message}-${color}`, res => {
-                res.on('data', chunk => { data += chunk })
-                res.on('end', () => {
+            https.get(`https://img.shields.io/badge/${titleInput}-${message}-${color}`, response => {
+                response.on('data', chunk => { data += chunk })
+                response.on('end', () => {
                     fs.writeFileSync('test-badge.svg', data);
                     resolve();
                 })
