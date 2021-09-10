@@ -1,0 +1,14 @@
+name: '.trx to badge'
+description: 'Convert .trx files into a badge'
+inputs:
+  label: 
+    description: 'Badge label'
+    required: true
+    default: 'Tests'
+  glob:  
+    description: 'Glob pattern for finding trx files'
+    required: true
+    default: '**/*.trx'
+runs:
+  using: 'node12'
+  main: 'index.js'

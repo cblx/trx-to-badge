@@ -1,0 +1,26 @@
+{
+  "name": "trx-to-badge",
+  "version": "1.0.0",
+  "description": "Github Action for generating a badge from trx files (Test Results)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cblx/trx-to-badge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cblx/trx-to-badge/issues"
+  },
+  "homepage": "https://github.com/cblx/trx-to-badge#readme",
+  "dependencies": {
+    "@actions/core": "^1.5.0",
+    "node-fetch": "^3.0.0",
+    "node-glob": "^1.2.0",
+    "xml-js": "^1.6.11"
+  }
+}
