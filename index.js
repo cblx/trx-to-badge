@@ -2,7 +2,7 @@ const core = require('@actions/core');
 const glob = require("glob");
 const parser = require('xml-js');
 const fs = require('fs');
-const fetch = require('node-fetch');
+const https = require('https');
 async function run() {
     try {
         const globInput = core.getInput('glob');
@@ -20,8 +20,17 @@ async function run() {
         }
         const color = failedTests ? 'critical' : 'success';
         const message = `${passedTests} passed, ${failedTests} failed`;
-        const svg = await fetch(`https://img.shields.io/badge/${titleInput}-${message}-${color}`);
-        fs.writeFileSync('test-badge.svg', svg);
+        const promise = new Promise(r => {
+            let data = '';
+            https.get(`https://img.shields.io/badge/${titleInput}-${message}-${color}`, res => {
+                res.on('data', chunk => { data += chunk })
+                res.on('end', () => {
+                    fs.writeFileSync('test-badge.svg', data);
+                    resolve();
+                })
+            });
+        });
+        await promise;
     } catch (error) {
         core.setFailed(error.message);
     }
