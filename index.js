@@ -13,8 +13,8 @@ async function run() {
         for (let f of files) {
             const content = fs.readFileSync(f);
             const jsonData = parser.xml2js(content, { compact: true, spaces: 2 });
-            console.log(jsonData);
-            const counters = jsonData.resultSummary.counters;
+            const counters = jsonData.TestRun.ResultSummary.Counters._attributes;
+            console.log(counters);
             passedTests += counters.passed;
             failedTests += counters.failed;
         }
