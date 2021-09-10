@@ -6,7 +6,7 @@ const https = require('https');
 async function run() {
     try {
         const globInput = core.getInput('glob');
-        const titleInput = core.getInput('title');
+        const labelInput = core.getInput('label');
         const files = glob.sync(globInput);
         let passedTests = 0;
         let failedTests = 0;
@@ -21,7 +21,7 @@ async function run() {
         const message = `${passedTests} passed, ${failedTests} failed`;
         const promise = new Promise(resolve => {
             let data = '';
-            https.get(`https://img.shields.io/badge/${titleInput}-${message}-${color}`, response => {
+            https.get(`https://img.shields.io/badge/${labelInput}-${message}-${color}`, response => {
                 response.on('data', chunk => { data += chunk })
                 response.on('end', () => {
                     console.log('SVG from img.shields.io');
