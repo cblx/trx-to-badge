@@ -19,6 +19,8 @@ async function run() {
         }
         const color = failedTests ? 'critical' : 'success';
         const message = `${passedTests} passed, ${failedTests} failed`;
+        console.log(color);
+        console.log(message);
         const promise = new Promise(resolve => {
             let data = '';
             https.get(`https://img.shields.io/badge/${labelInput}-${message}-${color}`, response => {
